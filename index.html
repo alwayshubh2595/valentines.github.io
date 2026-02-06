@@ -332,6 +332,16 @@
       margin: 0 -10px;
     }
 
+    .quote-header {
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      color: #d6357b;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      padding: 0 15px;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 40px 25px;
@@ -356,8 +366,9 @@
   <div class="container" id="container">
     <div class="question" id="question">Will you be my Valentine?</div>
 
+    <div class="quote-header">"Like you said, I didn't put much effort.... every girl should have an option to say yes"</div>
+
     <div id="default-content" class="content-section active">
-      <div class="footer-text">{"Like you said, I didn't put much effort.... every girl should have an option to say yes"}</div>
       <div class="choice-container">
         <button class="big-choice-btn" onclick="selectAnswer('yes')">Yes 💕</button>
         <button class="big-choice-btn" onclick="selectAnswer('no')">No</button>
@@ -374,8 +385,7 @@
     </div>
 
     <div id="no-content" class="content-section">
-      <div class="error-title">Why did you even try this?</div>
-      <div class="footer-text">"Like you said, I didn't put much effort.... but every girl should have an option to say yes"</div>
+      <div class="error-title">Like i said i would never force you , its always your choice :)</div>
       <button class="reset-btn" onclick="resetForm()">Go Back</button>
     </div>
   </div>
