@@ -299,6 +299,32 @@
       transform: translateY(-3px);
     }
 
+    .choice-container {
+      display: flex;
+      gap: 30px;
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+
+    .big-choice-btn {
+      background: linear-gradient(135deg, #d6357b, #ff6b9d);
+      color: white;
+      padding: 25px 60px;
+      border: none;
+      border-radius: 50px;
+      font-size: clamp(1.3rem, 5vw, 1.8rem);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 8px 20px rgba(214, 53, 123, 0.3);
+    }
+
+    .big-choice-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(214, 53, 123, 0.4);
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 40px 25px;
@@ -323,12 +349,14 @@
   <div class="container" id="container">
     <div class="question" id="question">Will you be my Valentine?</div>
 
-    <div class="toggle-container">
-      <button class="toggle-btn active" onclick="selectAnswer('yes')">Yes 💕</button>
-      <button class="toggle-btn" onclick="selectAnswer('no')">No</button>
+    <div id="default-content" class="content-section active">
+      <div class="choice-container">
+        <button class="big-choice-btn" onclick="selectAnswer('yes')">Yes, I will! 💕</button>
+        <button class="big-choice-btn" onclick="selectAnswer('no')">No, I won't 💔</button>
+      </div>
     </div>
 
-    <div id="yes-content" class="content-section active">
+    <div id="yes-content" class="content-section">
       <div class="footer-text">"Like you said, I didn't put much effort.... every girl should have an option to say yes"</div>
       <form class="email-form" onsubmit="sendEmail(event)">
         <input type="email" id="email" placeholder="Type your email" required>
@@ -339,7 +367,7 @@
 
     <div id="no-content" class="content-section">
       <div class="error-title">Why did you even try this?</div>
-      <div class="footer-text">"Like you said, I didn't put much effort.... every girl should have an option to say yes"</div>
+      <div class="footer-text">"Like you said, I didn't put much effort.... but every girl should have an option to say yes"</div>
       <button class="reset-btn" onclick="resetForm()">Go Back</button>
     </div>
   </div>
@@ -350,7 +378,7 @@
       const bgContainer = document.getElementById('bgContainer');
       const allElements = ['❤️', '💕', '💖', '💗', '💝', '✨', '∞', '🎀', '🎈', '🎉', '☕', '💐', '🌹', '🌸', '💍', '🎁', '✈️', '🌙', '⭐', '🥂', '🌺', '🎂', '🍰', '🍫', '🌻', '👰', '💑', '🎵'];
       
-      // Create 150+ floating elements
+      // Create 150+ floating elements with better spacing
       for (let i = 0; i < 150; i++) {
         const element = document.createElement('div');
         element.classList.add('floating-element');
@@ -358,8 +386,19 @@
         const content = allElements[Math.floor(Math.random() * allElements.length)];
         element.textContent = content;
         
-        element.style.left = Math.random() * 100 + '%';
-        element.style.bottom = Math.random() * 100 + '%';
+        // Better spacing - divide screen into grid zones
+        const gridSize = 6; // 6x6 grid for better distribution
+        const row = i % gridSize;
+        const col = Math.floor(i / gridSize);
+        
+        // Calculate position within each grid cell
+        const cellWidth = 100 / gridSize;
+        const cellHeight = 100 / gridSize;
+        const randomX = Math.random() * cellWidth;
+        const randomY = Math.random() * cellHeight;
+        
+        element.style.left = (col * cellWidth + randomX) + '%';
+        element.style.bottom = (row * cellHeight + randomY) + '%';
         element.style.animationDelay = Math.random() * 8 + 's';
         element.style.animationDuration = (12 + Math.random() * 20) + 's';
         element.style.fontSize = (2 + Math.random() * 3) + 'rem';
@@ -372,14 +411,12 @@
     generateFloatingElements();
 
     function selectAnswer(answer) {
-      // Update button states
-      const buttons = document.querySelectorAll('.toggle-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-
       // Show/hide content sections
+      const defaultContent = document.getElementById('default-content');
       const yesContent = document.getElementById('yes-content');
       const noContent = document.getElementById('no-content');
+
+      defaultContent.classList.remove('active');
 
       if (answer === 'yes') {
         yesContent.classList.add('active');
@@ -408,13 +445,10 @@
     }
 
     function resetForm() {
-      // Reset to initial state
-      document.getElementById('yes-content').classList.add('active');
+      // Reset to default state - show choice buttons
+      document.getElementById('default-content').classList.add('active');
+      document.getElementById('yes-content').classList.remove('active');
       document.getElementById('no-content').classList.remove('active');
-
-      const buttons = document.querySelectorAll('.toggle-btn');
-      buttons[0].classList.add('active');
-      buttons[1].classList.remove('active');
 
       document.getElementById('email').value = '';
       document.getElementById('message').value = '';
