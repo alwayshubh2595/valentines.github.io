@@ -343,6 +343,12 @@
       padding: 0 15px;
     }
 
+    #yes-content .footer-text {
+      color: rgba(0, 0, 0, 0.5);
+      font-weight: 300;
+      opacity: 0.7;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 40px 25px;
@@ -368,6 +374,7 @@
     <div class="question" id="question">Will you be my Valentine?</div>
 
     <div id="default-content" class="content-section active">
+      <div class="quote-header">"Like you said, I didn't put much effort.... every girl should have an option to say yes"</div>
       <div class="choice-container">
         <button class="big-choice-btn" onclick="selectAnswer('yes')">Yes ❤️</button>
         <button class="big-choice-btn" onclick="selectAnswer('no')">No</button>
