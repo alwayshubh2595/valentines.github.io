@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(135deg, #ffe6eb, #fff5f7);
+      color: #333;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 320px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    button {
+      margin: 6px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .yes {
+      background: #ff6f91;
+      color: white;
+    }
+    .maybe {
+      background: #ffd6e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <p>No pressure.<br>Just asking because I like choosing you.</p>
+
+    <button class="yes" onclick="answer('yes')">Yes ❤️</button>
+    <button class="maybe" onclick="answer('shy')">Yes but shy 🙈</button>
+    <button class="maybe" onclick="answer('maybe')">Maybe 😊</button>
+  </div>
+
+  <script>
+    function answer(choice) {
+      const card = document.getElementById('card');
+
+      if (choice === 'yes') {
+        card.innerHTML = `
+          <h1>Yay ❤️</h1>
+          <p>I’m really glad I asked.<br>Happy Valentine’s Day.</p>
+        `;
+      } else if (choice === 'shy') {
+        card.innerHTML = `
+          <h1>That counts 😌</h1>
+          <p>I’ll take shy yes any day.</p>
+        `;
+      } else {
+        card.innerHTML = `
+          <h1>That’s okay 💗</h1>
+          <p>I just wanted you to have the choice.</p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
