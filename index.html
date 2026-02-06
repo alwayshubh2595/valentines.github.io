@@ -331,15 +331,14 @@
     <div id="yes-content" class="content-section active">
       <div class="footer-text">"Like you said, I didn't put much effort.... every girl should have an option to say yes"</div>
       <form class="email-form" onsubmit="sendEmail(event)">
-        <input type="email" id="email" placeholder="Your email address" required>
-        <textarea id="message" placeholder="Share something special with me..." required></textarea>
-        <button type="submit" class="submit-btn">Send Me Your Heart 💌</button>
+        <input type="email" id="email" placeholder="Type your email" required>
+        <textarea id="message" placeholder="Enter your reply here..." required></textarea>
+        <button type="submit" class="submit-btn">Send Me  💌</button>
       </form>
     </div>
 
     <div id="no-content" class="content-section">
       <div class="error-title">Why did you even try this?</div>
-      <div class="error-message">I guess I was being too hopeful. But that's okay, at least you had the choice. 💔</div>
       <div class="footer-text">"Like you said, I didn't put much effort.... every girl should have an option to say yes"</div>
       <button class="reset-btn" onclick="resetForm()">Go Back</button>
     </div>
@@ -349,33 +348,22 @@
     // Generate floating background elements
     function generateFloatingElements() {
       const bgContainer = document.getElementById('bgContainer');
-      const elements = ['❤️', '💕', '💖', '✨', '∞'];
-      const ribbons = ['🎀'];
+      const allElements = ['❤️', '💕', '💖', '💗', '💝', '✨', '∞', '🎀', '🎈', '🎉', '☕', '💐', '🌹', '🌸', '💍', '🎁', '✈️', '🌙', '⭐', '🥂', '🌺', '🎂', '🍰', '🍫', '🌻', '👰', '💑', '🎵'];
       
-      // Create multiple floating elements
-      for (let i = 0; i < 15; i++) {
+      // Create 150+ floating elements
+      for (let i = 0; i < 150; i++) {
         const element = document.createElement('div');
         element.classList.add('floating-element');
         
-        let content = '';
-        const rand = Math.random();
-        
-        if (rand < 0.4) {
-          content = elements[Math.floor(Math.random() * elements.length)];
-          element.classList.add('heart');
-        } else if (rand < 0.7) {
-          content = '∞';
-          element.classList.add('infinity');
-        } else {
-          content = ribbons[0];
-          element.classList.add('ribbon');
-        }
-        
+        const content = allElements[Math.floor(Math.random() * allElements.length)];
         element.textContent = content;
+        
         element.style.left = Math.random() * 100 + '%';
         element.style.bottom = Math.random() * 100 + '%';
-        element.style.animationDelay = Math.random() * 5 + 's';
-        element.style.animationDuration = (15 + Math.random() * 15) + 's';
+        element.style.animationDelay = Math.random() * 8 + 's';
+        element.style.animationDuration = (12 + Math.random() * 20) + 's';
+        element.style.fontSize = (2 + Math.random() * 3) + 'rem';
+        element.style.opacity = (0.2 + Math.random() * 0.3);
         
         bgContainer.appendChild(element);
       }
